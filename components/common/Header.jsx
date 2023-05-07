@@ -54,7 +54,7 @@ const Base = styled.div`
   width: 100%;
 
   ${({ loading, scrollTop }) =>
-    loading && scrollTop === "false"
+    loading /* && scrollTop === "false" */
       ? css`
           transform: translateY(0);
         `

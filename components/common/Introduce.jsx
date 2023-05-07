@@ -46,14 +46,24 @@ const Introduce = () => {
   }, []);
 
   useEffect(() => {
-    if (1500 - scrollTop * 1.5 < 1) {
+    if (1000 - scrollTop * 1.5 < 1) {
       setDotWidth(5);
     }
-    setDotWidth(1500 - scrollTop * 1.5);
+    setDotWidth(1000 - scrollTop * 1.5);
   }, [scrollTop]);
 
+  const [bottom, setBottom] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== "object") return;
+
+    setBottom(document.querySelector("#introduce_base").getBoundingClientRect().bottom);
+  }, []);
+
+  console.log(bottom);
+
   return (
-    <Base>
+    <Base id="introduce_base" hide={scrollTop > bottom ? "true" : "false"}>
       <Wrapper id="introduce">
         <MainText>YOUR BEST PATNER</MainText>
         <SubText>
@@ -69,8 +79,9 @@ const Base = styled.div`
   width: 100%;
   margin: 5rem auto;
   text-align: center;
+  transition: all 0.3s;
 
-  height: 1500px;
+  height: 500px;
 `;
 
 const Wrapper = styled.div`

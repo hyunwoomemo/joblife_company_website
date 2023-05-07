@@ -131,7 +131,7 @@ const TypeItWrapper = styled.div`
   align-items: center;
   justify-content: center;
   transform-origin: center;
-  transition: all 0.3s;
+  transition: all 0.5s;
   background-image: url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80");
   background-repeat: no-repeat;
   background-size: 110%;
