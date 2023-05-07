@@ -4,6 +4,22 @@ import { useEffect, useState } from "react";
 
 const Header = () => {
   const [loading, setLoading] = useState(false);
+  // 스크롤 이벤트 트래킹
+  const [scrollTop, setScrollTop] = useState(0);
+
+  const handleScroll = () => {
+    setScrollTop(document.documentElement.scrollTop);
+  };
+
+  useEffect(() => {
+    if (typeof window !== "object") return;
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -11,7 +27,7 @@ const Header = () => {
     }, 2000);
   }, []);
   return (
-    <Base loading={loading}>
+    <Base loading={loading} scrollTop={scrollTop > 0 ? "true" : "false"}>
       <Wrapper>
         <Title>잡라이프</Title>
         <Nav onClick={() => scrollTo({ top: 3000, behavior: "smooth" })}>
@@ -35,9 +51,10 @@ const Base = styled.div`
   opacity: 0.7;
   z-index: 9;
   transition: all 0.3s;
+  width: 100%;
 
-  ${({ loading }) =>
-    loading
+  ${({ loading, scrollTop }) =>
+    loading && scrollTop === "false"
       ? css`
           transform: translateY(0);
         `
