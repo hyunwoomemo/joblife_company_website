@@ -6,7 +6,7 @@ function centerElement(elementId) {
   const element = document.getElementById(elementId);
   const parent = element.parentElement;
 
-  if (window.scrollY > parent.offsetTop - (document.documentElement.clientHeight - element.offsetHeight) / 2) {
+  if (window.scrollY > parent.offsetTop - (document.documentElement.clientHeight - element.offsetHeight) / 2 && window.innerWidth > 768) {
     element.style.position = "fixed";
     element.style.top = "50%";
     element.style.left = "50%";
@@ -60,8 +60,6 @@ const Introduce = () => {
     setBottom(document.querySelector("#introduce_base").getBoundingClientRect().bottom);
   }, []);
 
-  console.log(bottom);
-
   return (
     <Base id="introduce_base" hide={scrollTop > bottom ? "true" : "false"}>
       <Wrapper id="introduce">
@@ -76,29 +74,42 @@ const Introduce = () => {
 };
 
 const Base = styled.div`
-  width: 100%;
-  margin: 5rem auto;
-  text-align: center;
-  transition: all 0.3s;
+  @media (min-width: 768px) {
+    width: 100%;
+    margin: 5rem auto;
+    text-align: center;
+    transition: all 0.3s;
+    min-height: 600px;
+  }
 
-  height: 500px;
+  padding: 2rem;
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 `;
 
 const MainText = styled.div`
   font-size: 48px;
   font-weight: bold;
+  @media (max-width: 768px) {
+    white-space: nowrap;
+    font-size: 24px;
+  }
 `;
 
 const SubText = styled.div`
   line-height: 30px;
   font-size: 18px;
   position: relative;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const RedLine = styled.div`

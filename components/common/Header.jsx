@@ -61,6 +61,10 @@ const Base = styled.div`
       : css`
           transform: translateY(-100px);
         `}
+
+  @media (max-width:768px) {
+    position: sticky;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -81,12 +85,17 @@ const Title = styled.h1`
 
   @media (max-width: 768px) {
     font-size: 14px;
+    width: 100px;
   }
 `;
 
 const Nav = styled.ul`
   display: flex;
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const NavItem = styled.li``;

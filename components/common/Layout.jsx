@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Introduce from "./Introduce";
 import CompanyInfo from "../home/CompanyInfo";
 import { css } from "@emotion/react";
+import CompanyHistory from "../home/CompanyHistory";
 
 const Layout = () => {
   const [loading, setLoading] = useState(false);
@@ -21,6 +22,7 @@ const Layout = () => {
       <Hero />
       <Introduce />
       <CompanyInfo />
+      <CompanyHistory />
     </Base>
   );
 };

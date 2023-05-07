@@ -58,31 +58,42 @@ const CompanyInfo = () => {
 };
 
 const Base = styled.div`
+  @media (min-width: 768px) {
+    position: relative;
+    margin: 3rem 0;
+    padding: 2rem;
+  }
   background-color: #fff;
-  position: relative;
-  margin: 5rem 0;
+  padding: 1rem;
 `;
 
 const Wrapper = styled.div`
-  margin-top: 10rem;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
 `;
 
 const Title = styled.div`
-  padding: 1rem;
+  padding: 2rem 1rem;
+  font-weight: bolder;
+  font-size: 20px;
 `;
 
 const ServiceWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
 `;
 
 const ServiceItem = styled.div`
-  width: 25%;
-  padding: 2rem;
+  width: 48%;
   min-width: 200px;
   display: flex;
   flex-direction: column;
+
   gap: 1rem;
+  padding: 1rem;
 
   transition: all 0.3s;
 
@@ -98,10 +109,13 @@ const ServiceItem = styled.div`
 `;
 
 const ServiceImg = styled.img`
-  background-color: gray;
   height: 300px;
   width: 100%;
   border-radius: 5px;
+
+  @media (max-width: 768px) {
+    height: auto;
+  }
 `;
 const ServiceName = styled.div`
   margin-bottom: 1rem;

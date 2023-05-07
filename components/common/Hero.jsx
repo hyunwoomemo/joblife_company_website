@@ -40,7 +40,7 @@ const Hero = () => {
 
   // background Image 관련
 
-  const [size, setSize] = useState(110);
+  /* const [size, setSize] = useState(110);
 
   useEffect(() => {
     const handlePosition = setInterval(() => {
@@ -53,11 +53,11 @@ const Hero = () => {
     return () => {
       clearInterval(handlePosition);
     };
-  }, [size, loading]);
+  }, [size, loading]); */
 
   return (
     <Base scaledown={scrollTop > 0 ? "true" : "false"}>
-      <TypeItWrapper id="wrapper" size={size} loading={loading} scaledown={scrollTop > 0 ? "true" : "false"}>
+      <TypeItWrapper id="wrapper" /* size={size} */ loading={loading} scaledown={scrollTop > 0 ? "true" : "false"}>
         <Wrapper scaledown={scrollTop > 0 ? "true" : "false"}>
           <TypeIt
             options={{
@@ -100,60 +100,69 @@ const Hero = () => {
 };
 
 const Base = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  height: 100vh;
-  transition: all 0.3s;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+    transition: all 0.3s;
 
-  ${({ scaledown }) =>
-    scaledown === "true"
-      ? css`
-          height: 80vh;
-        `
-      : css``}
+    ${({ scaledown }) =>
+      scaledown === "true"
+        ? css`
+            height: 80vh;
+          `
+        : css``}
+  }
 `;
 
 const TypeItWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 48px;
-  width: 50%;
-  height: 20%;
-  padding: 2rem 4rem;
   color: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 0 auto;
-  align-items: center;
-  justify-content: center;
-  transform-origin: center;
-  transition: all 0.5s;
-  background-image: url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80");
-  background-repeat: no-repeat;
-  background-size: 110%;
+  @media (min-width: 768px) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    width: 50%;
+    height: 20%;
+    padding: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    transform-origin: center;
+    transition: all 0.5s;
+    background-image: url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
 
-  ${({ scaledown }) =>
-    scaledown === "true"
-      ? css`
-          @media (max-width: 768px) {
-            transform: translate(-50%, -50%) scale(0.3);
-          }
-          transform: translate(-50%, -50%) scale(0.5);
-          margin-top: 5rem;
-        `
-      : undefined}
+    ${({ scaledown }) =>
+      scaledown === "true"
+        ? css`
+            transform: translate(-50%, -50%) scale(0.5);
+            margin-top: 5rem;
+          `
+        : undefined}
 
-  ${({ loading }) =>
-    loading
-      ? css`
-          width: 100vw;
-          height: 100vh;
-        `
-      : css``}
+    ${({ loading }) =>
+      loading
+        ? css`
+            width: 100vw;
+            height: 100vh;
+          `
+        : css``}
+  }
+
+  @media (max-width: 768px) {
+    background-image: url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    height: 300px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -169,20 +178,14 @@ const Wrapper = styled.div`
       ? css`
           opacity: 0;
         `
-      : undefined} /* white-space: nowrap; */
+      : undefined}
 
   text-shadow: 1px 1px 5px black;
-`;
 
-const Text = styled.div`
-  ${({ loading }) =>
-    loading
-      ? css`
-          display: block;
-        `
-      : css`
-          display: none;
-        `}
+  @media (max-width: 768px) {
+    font-size: 16px;
+    height: 100%;
+  }
 `;
 
 const bounce = keyframes`
@@ -206,6 +209,10 @@ const Scroll = styled.div`
   gap: 10px;
   transition: all 0.3s;
   animation: ${bounce} 0.5s alternate infinite;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 
   ${({ loading, scaledown }) =>
     loading && scaledown === "false"
