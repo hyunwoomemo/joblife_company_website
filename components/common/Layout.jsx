@@ -6,6 +6,8 @@ import Introduce from "./Introduce";
 import CompanyInfo from "../home/CompanyInfo";
 import { css } from "@emotion/react";
 import CompanyHistory from "../home/CompanyHistory";
+import Fullpage from "../home/FullPage";
+import ScrollSection from "../home/ScrollSection";
 
 const Layout = () => {
   const [loading, setLoading] = useState(false);
@@ -21,8 +23,9 @@ const Layout = () => {
       <Header />
       <Hero />
       <Introduce />
+      {/* <ScrollSection /> */}
       <CompanyInfo />
-      <CompanyHistory />
+      {/* <CompanyHistory /> */}
     </Base>
   );
 };

@@ -1,11 +1,18 @@
 import useIntersectionObsever from "@/hook/useIntersectionObserver";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 const CompanyHistory = () => {
   return (
-    <Base>
+    <Base
+      initial={{ transform: "translateX(100vw)" }}
+      whileInView={{
+        transform: "translateX(0)",
+      }}
+      viewport={{ once: false }}
+    >
       <Wrapper>
         <Title>회사 연혁</Title>
       </Wrapper>
@@ -13,14 +20,17 @@ const CompanyHistory = () => {
   );
 };
 
-const Base = styled.div`
-  background-color: #fff;
+const Base = styled(motion.div)`
+  background-color: gray;
   position: relative;
-  margin: 3rem 0;
-  padding: 2rem;
+  height: 100vh;
 `;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+`;
 
 const Title = styled.div`
   padding: 2rem 0;

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import backgroundImg from "@/public/background.jpg";
 import TypeIt from "typeit-react";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   // 스크롤 이벤트 트래킹
@@ -31,10 +32,10 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    setTimeout(handleLoading, 2000);
+    setTimeout(handleLoading, 700);
 
     return () => {
-      clearTimeout(handleLoading, 2000);
+      clearTimeout(handleLoading, 700);
     };
   }, []);
 
@@ -61,7 +62,7 @@ const Hero = () => {
         <Wrapper scaledown={scrollTop > 0 ? "true" : "false"}>
           <TypeIt
             options={{
-              speed: 50,
+              speed: 30,
               waitUntilVisible: true,
               cursor: false,
               breakLines: true,
@@ -99,7 +100,7 @@ const Hero = () => {
   );
 };
 
-const Base = styled.div`
+const Base = styled(motion.div)`
   @media (min-width: 768px) {
     display: flex;
     flex-direction: column;

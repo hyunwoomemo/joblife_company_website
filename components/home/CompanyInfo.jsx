@@ -1,6 +1,7 @@
 import useIntersectionObsever from "@/hook/useIntersectionObserver";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { motion, useAnimate } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 const CompanyInfo = () => {
@@ -35,14 +36,32 @@ const CompanyInfo = () => {
 
   useIntersectionObsever(targetRef);
 
+  const container = {
+    hidden: { opacity: 0, y: -100 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        delayChildren: 0.2,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+  };
+
   return (
-    <Base>
-      <Wrapper ref={targetRef}>
+    <Base /* ref={targetRef} */>
+      <Wrapper>
         <Title>주요 서비스</Title>
-        <ServiceWrapper>
+        <ServiceWrapper variants={container} initial="hidden" whileInView="show">
           {services.map((v, i) => {
             return (
-              <ServiceItem key={i}>
+              <ServiceItem key={i} variants={item}>
                 <ServiceImg src={v.img}></ServiceImg>
                 <ServiceName>{v.name}</ServiceName>
                 {v.text.map((v1, i1) => {
@@ -57,37 +76,47 @@ const CompanyInfo = () => {
   );
 };
 
-const Base = styled.div`
+const Base = styled(motion.div)`
   @media (min-width: 768px) {
     position: relative;
-    margin: 3rem 0;
-    padding: 2rem;
   }
   background-color: #fff;
-  padding: 1rem;
+  margin: 2rem auto;
 `;
 
 const Wrapper = styled.div`
-  max-width: 900px;
+  /* max-width: 900px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto; */
 `;
 
-const Title = styled.div`
+const Title = styled(motion.div)`
   padding: 2rem 1rem;
   font-weight: bolder;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 5rem;
+  }
 `;
 
-const ServiceWrapper = styled.div`
+const ServiceWrapper = styled(motion.div)`
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+
   justify-content: center;
+
+  @media (min-width: 768px) {
+    gap: 2rem;
+  }
 `;
 
-const ServiceItem = styled.div`
-  width: 48%;
+const ServiceItem = styled(motion.div)`
+  width: 23%;
   min-width: 200px;
   display: flex;
   flex-direction: column;
@@ -95,28 +124,31 @@ const ServiceItem = styled.div`
   gap: 1rem;
   padding: 1rem;
 
-  transition: all 0.3s;
-
-  @media (min-width: 768px) {
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-
-  @media (max-width: 768px) {
-    flex: 1 1 auto;
+  @media (max-width: 769px) {
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
   }
 `;
 
 const ServiceImg = styled.img`
-  height: 300px;
   width: 100%;
+  height: 200px;
   border-radius: 5px;
 
   @media (max-width: 768px) {
     height: auto;
+    width: auto;
   }
 `;
+
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+`;
+
 const ServiceName = styled.div`
   margin-bottom: 1rem;
   text-align: center;
@@ -125,11 +157,14 @@ const ServiceName = styled.div`
 `;
 const ServiceText = styled.div`
   position: relative;
+  margin-left: 1rem;
+
   &:before {
     content: "🔸";
     position: absolute;
     right: 100%;
   }
+
   word-break: keep-all;
   line-height: 20px;
 `;

@@ -24,7 +24,7 @@ const Header = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(true);
-    }, 2000);
+    }, 1000);
   }, []);
   return (
     <Base loading={loading} scrollTop={scrollTop > 0 ? "true" : "false"}>
@@ -42,13 +42,10 @@ const Header = () => {
 };
 
 const Base = styled.div`
-  padding: 0 2rem;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background-color: #fff;
-  opacity: 0.7;
   z-index: 9;
   transition: all 0.3s;
   width: 100%;
@@ -70,6 +67,9 @@ const Base = styled.div`
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  background-color: #fff;
+  opacity: 0.8;
+  padding: 0 2rem;
 `;
 
 const Title = styled.h1`

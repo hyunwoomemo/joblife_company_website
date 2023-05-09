@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 function centerElement(elementId) {
@@ -61,7 +62,18 @@ const Introduce = () => {
   }, []);
 
   return (
-    <Base id="introduce_base" hide={scrollTop > bottom ? "true" : "false"}>
+    <Base
+      id="introduce_base"
+      hide={scrollTop > bottom ? "true" : "false"}
+      initial={{ opacity: 0 }}
+      whileInView={{
+        opacity: 1,
+      }}
+      transition={{
+        duration: 0,
+      }}
+      viewport={{ once: false }}
+    >
       <Wrapper id="introduce">
         <MainText>YOUR BEST PATNER</MainText>
         <SubText>
@@ -73,16 +85,16 @@ const Introduce = () => {
   );
 };
 
-const Base = styled.div`
+const Base = styled(motion.div)`
   @media (min-width: 768px) {
     width: 100%;
     margin: 5rem auto;
     text-align: center;
-    transition: all 0.3s;
-    min-height: 600px;
+    min-height: 1000px;
   }
 
   padding: 2rem;
+  margin: 2rem auto;
 `;
 
 const Wrapper = styled.div`
